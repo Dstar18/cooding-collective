@@ -10,7 +10,7 @@
 ## Technical Test Backend Engineer
 Technical Test Backend Engineer Laravel, Use PHP Laravel to make the employee attendance web application and use postgreSQL to make the database.
 
-Project Demo: <a href="http://publichost.my.id:8123"></a>
+Project Demo: http://publichost.my.id:8123
 
 Feature:
 - Basic Auth Login API and encrypt like base64
@@ -39,4 +39,128 @@ php artisan migrate
 ```
 ```sh
 php artisan db:seed
+```
+
+## Endpoint For Demo
+- Auth Login with account employee
+- Login and logout user with account employee
+
+Example account employee:
+```sh
+username/email : Jokoterdepan@gmail.com
+password : changeme
+```
+**#Create Token CSRF**
+- Method: GET
+- URL: http://publichost.my.id:8123/token-csrf
+
+Authentication:
+- Type: Basic Auth
+- Login: Not Required
+
+Body:
+```sh
+No body required for this request
+```
+
+**#Login User**
+- Method: POST
+- URL: http://publichost.my.id:8123/auth
+
+Authentication:
+- Type: Basic Auth
+- Login: Not Required
+
+Body:
+```sh
+{
+    "_token" : {input_token},
+    "email" : "Jokoterdepan@gmail.com",
+    "password" : "changeme"
+}
+```
+
+**#Logout User**
+- Method: GET
+- URL: http://publichost.my.id:8123/logout
+
+Authentication:
+- Type: Basic Auth
+- Login: Not Required
+
+Body:
+```sh
+No body required for this request
+```
+
+**#Employee / {id}**
+- Method: GET
+- URL: http://publichost.my.id:8123/employee
+- URL: http://publichost.my.id:8123/employee/{id}
+
+Authentication:
+- Type: Basic Auth
+- Login: Required
+
+Body:
+```sh
+No body required for this request
+```
+
+**#Employee Create**
+- Method: POST
+- URL: http://publichost.my.id:8123/employee/store
+
+Authentication:
+- Type: Basic Auth
+- Login: Required
+
+Body:
+```sh
+{
+    "_token" : {input_token},
+    "name": "Fitrii",
+    "dob": "2000-10-10",
+    "city": "Jogja",
+    "email": "fitri11@gmail.com",
+    "password" : "changeme",
+    "created_at": "2024-12-17 12:32:26"
+}
+```
+
+**#Employee Update**
+- Method: POST
+- URL: http://publichost.my.id:8123/employee/update/{id}
+
+Authentication:
+- Type: Basic Auth
+- Login: Required
+
+Body:
+```sh
+{
+    "_token" : {input_token},
+    "name": "Fitrii 123",
+    "dob": "2000-10-10",
+    "city": "Sleman",
+    "email": "fitri11@gmail.com",
+    "updated_at": "2024-12-120 12:32:26",
+    "status": "active"
+}
+```
+
+**#User Update**
+- Method: POST
+- URL: http://publichost.my.id:8123/user-account/update/{id}
+
+Authentication:
+- Type: Basic Auth
+- Login: Required
+
+Body:
+```sh
+{
+    "_token" : {input_token},
+    "status": "inactive"
+} 
 ```
